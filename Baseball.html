@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <title>Score</title>
 
+<script src="Baseball.js"></script>
 <link href="css/styles.css" rel="stylesheet" type="text/css">
 </head>
     <header class="baseball">
@@ -14,108 +15,208 @@
     <div class="recents">
         Body of baseball scoring<br><br>
     </div>
-
-    <div class="count">
-        <h2>Count:</h2>
-        <button type="button">Ball</button>
-        <div id="ball1">
-            <button id="ball"></button>
+    <a href="Lineups.html">Edit Lineups</a>
+    <div class="bases">
+        <div class="firstBase">
         </div>
-        <div id="ball2">
-            <button id="ball"></button>
+        <div class="secondBase">
         </div>
-        <div id="ball3">
-            <button id="ball"></button>
+        <div class="thirdBase">
         </div>
-        <button type="button">Strike</button>
-        <div id="strike1">
-            <button id="strike"></button>
-        </div>
-        <div id="strike2">
-            <button id="strike"></button>
+        <div class="homePlate">
         </div>
     </div>
-
-    <div class="lineup">
-        <label for="team1" >Enter Home Team's Name:</label>
-        <input type="text" id="team1" name="team1"><br>
-        <h3>Lineup:</h3>
-        <label for="team1" >1.</label>
-        <input type="text" id="team1" name="team1">
-        <label for="team2" >Position</label>
-        <input type="text" id="team2" name="team2"><br>
-        <label for="team1" >2.</label>
-        <input type="text" id="team1" name="team1">
-        <label for="team2" >Position</label>
-        <input type="text" id="team2" name="team1"><br>
-        <label for="team1" >3.</label>
-        <input type="text" id="team1" name="team1">
-        <label for="team1" >Position</label>
-        <input type="text" id="team1" name="team1"><br>
-        <label for="team1" >4.</label>
-        <input type="text" id="team1" name="team1">
-        <label for="team1" >Position</label>
-        <input type="text" id="team1" name="team1"><br>
-        <label for="team1" >5.</label>
-        <input type="text" id="team1" name="team1">
-        <label for="team1" >Position</label>
-        <input type="text" id="team1" name="team1"><br>
-        <label for="team1" >6.</label>
-        <input type="text" id="team1" name="team1">
-        <label for="team1" >Position</label>
-        <input type="text" id="team1" name="team1"><br>
-        <label for="team1" >7.</label>
-        <input type="text" id="team1" name="team1">
-        <label for="team1" >Position</label>
-        <input type="text" id="team1" name="team1"><br>
-        <label for="team1" >8.</label>
-        <input type="text" id="team1" name="team1">
-        <label for="team1" >Position</label>
-        <input type="text" id="team1" name="team1"><br>
-        <label for="team1" >9.</label>
-        <input type="text" id="team1" name="team1">
-        <label for="team1" >Position</label>
-        <input type="text" id="team1" name="team1"><br>
-        <button type="button">Save</button><br><br>
-        <label for="team1">Enter Away Team's Name:</label>
-        <input type="text" id="team1" name="team1"><br>
-        <h3>Lineup:</h3>
-        <label for="team2" >1.</label>
-        <input type="text" id="team2" name="team2">
-        <label for="team2" >Position</label>
-        <input type="text" id="team2" name="team2"><br>
-        <label for="team2" >2.</label>
-        <input type="text" id="team2" name="team2">
-        <label for="team2" >Position</label>
-        <input type="text" id="team2" name="team2"><br>
-        <label for="team2" >3.</label>
-        <input type="text" id="team2" name="team2">
-        <label for="team2" >Position</label>
-        <input type="text" id="team2" name="team2"><br>
-        <label for="team2" >4.</label>
-        <input type="text" id="team2" name="team2">
-        <label for="team2" >Position</label>
-        <input type="text" id="team2" name="team2"><br>
-        <label for="team2" >5.</label>
-        <input type="text" id="team2" name="team2">
-        <label for="team2" >Position</label>
-        <input type="text" id="team2" name="team2"><br>
-        <label for="team2" >6.</label>
-        <input type="text" id="team2" name="team2">
-        <label for="team2" >Position</label>
-        <input type="text" id="team2" name="team2"><br>
-        <label for="team2" >7.</label>
-        <input type="text" id="team2" name="team2">
-        <label for="team2" >Position</label>
-        <input type="text" id="team2" name="team2"><br>
-        <label for="team2" >8.</label>
-        <input type="text" id="team2" name="team2">
-        <label for="team2" >Position</label>
-        <input type="text" id="team2" name="team2"><br>
-        <label for="team2" >9.</label>
-        <input type="text" id="team2" name="team2">
-        <label for="team2" >Position</label>
-        <input type="text" id="team2" name="team2"><br>
-        <button type="button">Save</button><br>
+    <div class="inning">
+        <div id="top">
+        </div>
+        <td id="inningNum">0</td>
+        <div id="bottom">
+        </div>
     </div>
+    <div class="scoreBases">
+        <div class="scoreboardDiv">
+        <table id="top">
+            <tbody>
+                <tr>
+                <th scope="row" class="colTitle">
+                    Balls
+                </th>
+                <th scope="row" class="colTitle">
+                    Strikes
+                </th>
+                <th scope="row" class="colTitle">
+                    Outs
+                </th>
+                </tr>
+                <tr>
+                    <td class="upper" id="balls">0</td>
+                    <td class="upper" id="strikes">0</td>
+                    <td class="upper" id="outs">0</td>
+                </tr>
+            </tbody>
+        </table>
+        <table id="scoreboard">
+            <tr>
+            <td>
+            <table id="Left">
+                <tbody>
+                    <tr>
+                        <th scope="col" class="rowTitle">
+                            Innings
+                        </th>
+                    </tr>
+                    <tr>
+                        <th scope="col" class="rowTitle">
+                            Visitor
+                        </th>
+                    </tr>
+                    <tr>
+                        <th scope="col" class="rowTitle">
+                            Home
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+            </td>
+            <td>
+            <div class="middle">
+            <table id="scoreboardMid">
+                <tbody>
+                    <tr>
+                        <th class="scoreCol" scope="col">1</th>
+                        <th class="scoreCol" scope="col">2</th>
+                        <th class="scoreCol" scope="col">3</th>
+                        <th class="scoreCol" scope="col">4</th>
+                        <th class="scoreCol" scope="col">5</th>
+                        <th class="scoreCol" scope="col">6</th>
+                        <th class="scoreCol" scope="col">7</th>
+                        <th class="scoreCol" scope="col">8</th>
+                        <th class="scoreCol" scope="col">9</th>
+                    </tr>
+                    <tr>
+                        <td class="scoreCell" id="vis"></td>
+                        <td class="scoreCell" id="vis"></td>
+                        <td class="scoreCell" id="vis"></td>
+                        <td class="scoreCell" id="vis"></td>
+                        <td class="scoreCell" id="vis"></td>
+                        <td class="scoreCell" id="vis"></td>
+                        <td class="scoreCell" id="vis"></td>
+                        <td class="scoreCell" id="vis"></td>
+                        <td class="scoreCell" id="vis"></td>
+                    </tr>
+                    <tr>
+                        <td class="scoreCell" id="hom"></td>
+                        <td class="scoreCell" id="hom"></td>
+                        <td class="scoreCell" id="hom"></td>
+                        <td class="scoreCell" id="hom"></td>
+                        <td class="scoreCell" id="hom"></td>
+                        <td class="scoreCell" id="hom"></td>
+                        <td class="scoreCell" id="hom"></td>
+                        <td class="scoreCell" id="hom"></td>
+                        <td class="scoreCell" id="hom"></td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+            </td>
+            <td>
+            <table id="right">
+                <tbody>
+                    <tr>
+                        <th class="scoreCol" scope="col">R</th>
+                        <th class="scoreCol" scope="col">H</th>
+                        <th class="scoreCol" scope="col">E</th>
+                    </tr>
+                    <tr>
+                        <td class="scoreCell" id="visRuns">0</td>
+                        <td class="scoreCell" id="visHits">0</td>
+                        <td class="scoreCell" id="visErrors">0</td>
+                    </tr>
+                    <tr>
+                        <td class="scoreCell" id="homeRuns">0</td>
+                        <td class="scoreCell" id="homeHits">0</td>
+                        <td class="scoreCell" id="homeErrors">0</td>
+                    </tr>
+                </tbody>
+            </table>
+            </td>
+            </tr>
+            </table>
+            </div>    
+</div>
+</div>
+    <div class="atBat">
+        <h2>At Bat:</h2>
+        <button type="button" id="ballButton" onclick="ball();">Ball</button>
+        <button type="button" id="strikeButton" onclick="strike();">Strike</button><br>
+        <button type="button" id="inPlay" onclick="inPlay();">In Play</button><br>
+        <div id="result">
+            <button type="button" id="singleButton" onclick="single();">Single</button><br>
+            <button type="button" id="doubleButton" onclick="double();">Double</button><br>
+            <button type="button" id="tripleButton" onclick="triple();">Triple</button><br>
+            <button type="button" id="homeRunButton" onclick="homerun();">Home Run</button><br>
+            <button type="button" id="groundoutButton" onclick="groundout();">Groundout</button><br>
+            <button type="button" id="flyoutButton" onclick="flyout();">Fly Out</button><br>
+            <button type="button" id="lineoutButton" onclick="lineout();">Lineout</button><br>
+            <button type="button" id="errorButton" onclick="error();">Error</button><br>
+
+            <label for="position"> To:</label>
+            <select name="position" id="position">
+                <option value="position">Position</option>
+                <option value="rf">Right Field</option>
+                <option value="cf">Center Field</option>
+                <option value="lf">Left Field</option>
+                <option value="3b">Third Base</option>
+                <option value="ss">Short Stop</option>
+                <option value="2b">Second Base</option>
+                <option value="1b">First Base</option>
+                <option value="p">Pitcher</option>
+                <option value="c">Catcher</option>
+                <option value="rfl">Right Field Line</option>
+                <option value="rc">Right Center</option>
+                <option value="lc">Left Center</option>
+                <option value="lfl">Left Field Line</option>
+            </select>
+            <input type="submit" value="Submit" class="Submit">
+        </form>
+        </div>
+        <button type="button">Strikeout</button>
+        <button type="button">Walk</button>
+        <button type="button">Hit By Pitch</button><br>
+
+    </div>
+
+    <div class="homeLineup">
+        <td id="home1">0</td>
+        <td id="home2">0</td>
+        <td id="home3">0</td>
+        <td id="home4">0</td>
+        <td id="home5">0</td>
+        <td id="home6">0</td>
+        <td id="home7">0</td>
+        <td id="home8">0</td>
+        <td id="home9">0</td>
+    </div>
+    <div class="pitcherStats">
+        <h2>Pitcher Stats:</h2>
+        <table>
+            <tbody>
+                <tr>
+                    <th class="pitcher" scope="col">Pitch Count</th>
+                    <th class="pitcher" scope="col">Balls</th>
+                    <th class="pitcher" scope="col">Strikes</th>
+                    <th class="pitcher" scope="col">Strikeouts</th>
+                    <th class="pitcher" scope="col">Walks</th>
+                </tr>
+                <tr>
+                    <td class="PitchCell" id="pitchCount">0</td>
+                    <td class="PitchCell" id="pitchBalls">0</td>
+                    <td class="PitchCell" id="pitchStrikes">0</td>
+                    <td class="PitchCell" id="strikeouts">0</td>
+                    <td class="PitchCell" id="walks">0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
 </html>

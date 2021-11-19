@@ -36,26 +36,108 @@ title {
     box-shadow: var(--shadow);
 }
 
-div.count {
+div.atBat {
+    margin-top:10px;
     border-style: solid;
-    width: 150px;
-    float:right;
+    width: 30%;
 }
 
 button {
     margin-top: 10px;
 }
 
-#ball {
-    background-color: green;
-    border-radius: 50%;
-    height:15px;
-    width: 15px;
+.scoreCell{
+    background-color: white;
 }
 
-#strike {
+.upper {
+    background-color: white;
+}
+.colTitle {
+    padding-left: 70px;
+}
+.upper {
+    margin-right: 90px;
+    width:10px;
+}
+
+.scoreboardDiv {
+    width:500px;
+    margin-left: 10px;
     background-color: red;
-    border-radius: 50%;
-    height:15px;
-    width: 15px;
+}
+
+table#scoreboard {
+    width:500px;
+}
+
+.scoreCol{
+    background-color: black;
+    color:white;
+    padding-left: 15px;
+}
+
+.scoreCell {
+    padding-top: 20px;
+    align-content: center;
+}
+.rowTitle {
+    background-color: black;
+    color:white;
+    float:left;
+}
+
+.middle{
+    width:90%;
+    background-color: black;
+    height:75px;
+}
+
+#result{
+    display: none;
+}
+
+.bases {
+    width: 200px;
+    height: 175px;
+    background-color: red;
+    float: right;
+    margin-right: 500px;
+    margin-top: 26px;
+}
+.firstBase {
+    width: 40px;
+    height: 40px;
+    background-color: black;
+    float: right;
+    transform: rotate(45deg);
+    margin-top: 90px;
+    margin-right: 50px;
+}
+.secondBase {
+    width: 40px;
+    height: 40px;
+    background-color: black;
+    float: right;
+    transform: rotate(45deg);
+    margin-right: 80px;
+    margin-top: 20px;
+}
+.scoreBases {
+    margin-top: 8px;
+    width: 100%;
+    height: 175px;
+    background-color: green;
+}
+
+.homeTeam {
+    display: block;
+    margin-top: 2em;
+}
+#team1, #team2{
+    margin-top: .5em;
+}
+
+.inning {
+    float: right;
 }
