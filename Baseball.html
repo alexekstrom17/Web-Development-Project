@@ -15,7 +15,7 @@
     <div class="recents">
         Body of baseball scoring<br><br>
     </div>
-    <a href="Lineups.html">Edit Lineups</a>
+    <button type="button" id="editLineups" onclick="editLineups();">Edit Lineups</button><br>
     <div class="bases">
         <div class="firstBase">
         </div>
@@ -25,11 +25,21 @@
         </div>
         <div class="homePlate">
         </div>
+        <div id="onFirst">
+        </div>
+        <div id="onSecond">
+        </div>
+        <div id="onThird">
+        </div>
     </div>
     <div class="inning">
-        <div id="top">
+        <div class="placeholderTop">
+        <div id="topInning">
         </div>
-        <td id="inningNum">0</td>
+        </div>
+        <div class="num">
+            <div id="inningNum">1</div>
+        </div>
         <div id="bottom">
         </div>
     </div>
@@ -62,7 +72,7 @@
                 <tbody>
                     <tr>
                         <th scope="col" class="rowTitle">
-                            Innings
+                            Inning
                         </th>
                     </tr>
                     <tr>
@@ -94,26 +104,26 @@
                         <th class="scoreCol" scope="col">9</th>
                     </tr>
                     <tr>
-                        <td class="scoreCell" id="vis"></td>
-                        <td class="scoreCell" id="vis"></td>
-                        <td class="scoreCell" id="vis"></td>
-                        <td class="scoreCell" id="vis"></td>
-                        <td class="scoreCell" id="vis"></td>
-                        <td class="scoreCell" id="vis"></td>
-                        <td class="scoreCell" id="vis"></td>
-                        <td class="scoreCell" id="vis"></td>
-                        <td class="scoreCell" id="vis"></td>
+                        <td class="scoreCell" id="vis1">0</td>
+                        <td class="scoreCell" id="vis2">0</td>
+                        <td class="scoreCell" id="vis3">0</td>
+                        <td class="scoreCell" id="vis4">0</td>
+                        <td class="scoreCell" id="vis5">0</td>
+                        <td class="scoreCell" id="vis6">0</td>
+                        <td class="scoreCell" id="vis7">0</td>
+                        <td class="scoreCell" id="vis8">0</td>
+                        <td class="scoreCell" id="vis9">0</td>
                     </tr>
                     <tr>
-                        <td class="scoreCell" id="hom"></td>
-                        <td class="scoreCell" id="hom"></td>
-                        <td class="scoreCell" id="hom"></td>
-                        <td class="scoreCell" id="hom"></td>
-                        <td class="scoreCell" id="hom"></td>
-                        <td class="scoreCell" id="hom"></td>
-                        <td class="scoreCell" id="hom"></td>
-                        <td class="scoreCell" id="hom"></td>
-                        <td class="scoreCell" id="hom"></td>
+                        <td class="scoreCell" id="hom1">0</td>
+                        <td class="scoreCell" id="hom2">0</td>
+                        <td class="scoreCell" id="hom3">0</td>
+                        <td class="scoreCell" id="hom4">0</td>
+                        <td class="scoreCell" id="hom5">0</td>
+                        <td class="scoreCell" id="hom6">0</td>
+                        <td class="scoreCell" id="hom7">0</td>
+                        <td class="scoreCell" id="hom8">0</td>
+                        <td class="scoreCell" id="hom9">0</td>
                     </tr>
                 </tbody>
             </table>
@@ -151,10 +161,14 @@
         <button type="button" id="strikeButton" onclick="strike();">Strike</button><br>
         <button type="button" id="inPlay" onclick="inPlay();">In Play</button><br>
         <div id="result">
-            <button type="button" id="singleButton" onclick="single();">Single</button><br>
-            <button type="button" id="doubleButton" onclick="double();">Double</button><br>
-            <button type="button" id="tripleButton" onclick="triple();">Triple</button><br>
-            <button type="button" id="homeRunButton" onclick="homerun();">Home Run</button><br>
+            <button type="button" id="singleButton" onclick="single();">Single</button> 
+            <button type="button" id="runnerFirst" onclick="runFirst();">Runner To First</button><br>
+            <button type="button" id="doubleButton" onclick="double();">Double</button>
+            <button type="button" id="runnerSecond" onclick="runSecond();">Runner To Second</button><br>
+            <button type="button" id="tripleButton" onclick="triple();">Triple</button>
+            <button type="button" id="runnerThird" onclick="runThird();">Runner To Third</button> <br>
+            <button type="button" id="homeRunButton" onclick="homerun();">Home Run</button>
+            <button type="button" id="runScored" onclick="runScored();">Run Scored</button><br>
             <button type="button" id="groundoutButton" onclick="groundout();">Groundout</button><br>
             <button type="button" id="flyoutButton" onclick="flyout();">Fly Out</button><br>
             <button type="button" id="lineoutButton" onclick="lineout();">Lineout</button><br>
@@ -177,25 +191,40 @@
                 <option value="lc">Left Center</option>
                 <option value="lfl">Left Field Line</option>
             </select>
-            <input type="submit" value="Submit" class="Submit">
-        </form>
+            <input type="submit" value="Submit" class="Submit"> <br>
+            <button type="button" id="endAtBat" onclick="endAtBat();">End At Bat</button>
         </div>
-        <button type="button">Strikeout</button>
-        <button type="button">Walk</button>
         <button type="button">Hit By Pitch</button><br>
-
+        <button type="button" id="runFirst" onclick="runFirst();">Runner To First</button>
+        <button type="button" id="runSecond" onclick="runSecond();">Runner To Second</button>
+        <button type="button" id="runThird" onclick="runThird();">Runner To Third</button>
+        <button type="button" id="runnerScore" onclick="runScored();">Run Scored</button><br>
+        <button type="button" id="inningEnd" onclick="endInning();">End Inning</button><br><br>
     </div>
 
     <div class="homeLineup">
-        <td id="home1">0</td>
-        <td id="home2">0</td>
-        <td id="home3">0</td>
-        <td id="home4">0</td>
-        <td id="home5">0</td>
-        <td id="home6">0</td>
-        <td id="home7">0</td>
-        <td id="home8">0</td>
-        <td id="home9">0</td>
+        <ol class = "a">
+            <li><span id="home1"></span></li>
+        <span id="home2"></span>
+        <span id="home3"></span>
+        <span id="home4"></span>
+        <span id="home5"></span>
+        <span id="home6"></span>
+        <span id="home7"></span>
+        <span id="home8"></span>
+        <span id="home9"></span>
+        </ol>
+    </div>
+    <div class="visLineup">
+        <span id="vis1"></span>
+        <span id="vis2"></span>
+        <span id="vis3"></span>
+        <span id="vis4"></span>
+        <span id="vis5"></span>
+        <span id="vis6"></span>
+        <span id="vis7"></span>
+        <span id="vis8"></span>
+        <span id="vis9"></span>
     </div>
     <div class="pitcherStats">
         <h2>Pitcher Stats:</h2>

@@ -13,39 +13,18 @@ let pitchBalls = 0;
 let strikeouts = 0;
 let pitchCount = 0;
 let walks = 0;
+let inning = 1;
+let totInning = 1;
+let inningScore = 0;
+
 
 function visLineup () {
 
 }
 
-function homeLineup () {
-    var home1 = document.getElementById("1team1").value;
-    var home2 = document.getElementById("2team1").value;
-    var home3 = document.getElementById("3team1").value;
-    var home4 = document.getElementById("4team1").value;
-    var home5 = document.getElementById("5team1").value;
-    var home6 = document.getElementById("6team1").value;
-    var home7 = document.getElementById("7team1").value;
-    var home8 = document.getElementById("8team1").value;
-    var home9 = document.getElementById("9team1").value;
-    localStorage.setItem("data1", home1);
-    localStorage.setItem("data2", home2);
-    localStorage.setItem("data3", home3);
-    localStorage.setItem("data4", home4);
-    localStorage.setItem("data5", home5);
-    localStorage.setItem("data6", home6);
-    localStorage.setItem("data7", home7);
-    localStorage.setItem("data8", home8);
-    localStorage.setItem("data9", home9);
-    document.getElementById("home1").innerHTML=localStorage.getItem("data1");
-    document.getElementById("home2").innerHTML=localStorage.getItem("data2");
-    document.getElementById("home3").innerHTML=localStorage.getItem("data3");
-    document.getElementById("home4").innerHTML=localStorage.getItem("data4");
-    document.getElementById("home5").innerHTML=localStorage.getItem("data5");
-    document.getElementById("home6").innerHTML=localStorage.getItem("data6");
-    document.getElementById("home7").innerHTML=localStorage.getItem("data7");
-    document.getElementById("home8").innerHTML=localStorage.getItem("data8");
-    document.getElementById("home9").innerHTML=localStorage.getItem("data9");
+function editLineups () {
+    var s = document.getElementById("1team1").value;
+    document.getElementById("home1").innerHTML = s;
 }
 
 function ball () {
@@ -89,22 +68,151 @@ function inPlay() {
 }
 
 function single() {
-    visHits += 1;
-    document.getElementById("visHits").innerHTML = visHits;
-    document.getElementById("result").style.display = 'none';
+    if (inning == 1 || inning == 3 || inning == 5 || inning == 7 || inning == 9 
+        || inning == 11 || inning == 13 || inning == 15 || inning == 17) {
+        visHits += 1;
+        document.getElementById("visHits").innerHTML = visHits;
+    } else {
+        homeHits += 1;
+        document.getElementById("homeHits").innerHTML = homeHits;
+    }
 }
 function double() {
-    visHits += 1;
-    document.getElementById("visHits").innerHTML = visHits;
-    document.getElementById("result").style.display = 'none';
+    if (inning == 1 || inning == 3 || inning == 5 || inning == 7 || inning == 9 
+        || inning == 11 || inning == 13 || inning == 15 || inning == 17) {
+        visHits += 1;
+        document.getElementById("visHits").innerHTML = visHits;
+    } else {
+        homeHits += 1;
+        document.getElementById("homeHits").innerHTML = homeHits;
+    }
 }
 function triple() {
-    visHits += 1;
-    document.getElementById("visHits").innerHTML = visHits;
-    document.getElementById("result").style.display = 'none';
+    if (inning == 1 || inning == 3 || inning == 5 || inning == 7 || inning == 9 
+        || inning == 11 || inning == 13 || inning == 15 || inning == 17) {
+        visHits += 1;
+        document.getElementById("visHits").innerHTML = visHits;
+    } else {
+        homeHits += 1;
+        document.getElementById("homeHits").innerHTML = homeHits;
+    }
 }
 function homerun() {
-    visHits += 1;
-    document.getElementById("visHits").innerHTML = visHits;
+    if (inning == 1 || inning == 3 || inning == 5 || inning == 7 || inning == 9 
+        || inning == 11 || inning == 13 || inning == 15 || inning == 17) {
+        visHits += 1;
+        document.getElementById("visHits").innerHTML = visHits;
+    } else {
+        homeHits += 1;
+        document.getElementById("homeHits").innerHTML = homeHits;
+    }
+}
+function runFirst() {
+    if (document.getElementById("runnerFirst")) {
+        document.getElementById("onFirst").style.display = 'block';
+    }
+}
+function runSecond() {
+    if (document.getElementById("runnerSecond")) {
+        document.getElementById("onFirst").style.display = 'none';
+        document.getElementById("onSecond").style.display = 'block';
+    }
+}
+function runThird() {
+    if (document.getElementById("runnerThird")) {
+        document.getElementById("onFirst").style.display = 'none';
+        document.getElementById("onSecond").style.display = 'none';
+        document.getElementById("onThird").style.display = 'block';
+    }
+}
+function runScored() {
+    inningScore += 1;
+    if (inning == 1 || inning == 3 || inning == 5 || inning == 7 || inning == 9 
+        || inning == 11 || inning == 13 || inning == 15 || inning == 17) {
+        visRuns += 1;
+        document.getElementById("visRuns").innerHTML = visRuns;
+        if (inning == 1) {
+            document.getElementById("vis1").innerHTML = inningScore;
+        }
+        if (inning == 3) {
+            document.getElementById("vis2").innerHTML = inningScore;
+        }
+        if (inning == 5) {
+            document.getElementById("vis3").innerHTML = inningScore;
+        }
+        if (inning == 7) {
+            document.getElementById("vis4").innerHTML = inningScore;
+        }
+        if (inning == 9) {
+            document.getElementById("vis5").innerHTML = inningScore;
+        }
+        if (inning == 11) {
+            document.getElementById("vis6").innerHTML = inningScore;
+        }
+        if (inning == 13) {
+            document.getElementById("vis7").innerHTML = inningScore;
+        }
+        if (inning == 15) {
+            document.getElementById("vis8").innerHTML = inningScore;
+        }
+        if (inning == 17) {
+            document.getElementById("vis9").innerHTML = inningScore;
+        }
+    } else {
+        homeRuns += 1;
+        document.getElementById("homeRuns").innerHTML = homeRuns;
+        if (inning == 2) {
+            document.getElementById("hom1").innerHTML = inningScore;
+        }
+        if (inning == 4) {
+            document.getElementById("hom2").innerHTML = inningScore;
+        }
+        if (inning == 6) {
+            document.getElementById("hom3").innerHTML = inningScore;
+        }
+        if (inning == 8) {
+            document.getElementById("hom4").innerHTML = inningScore;
+        }
+        if (inning == 10) {
+            document.getElementById("hom5").innerHTML = inningScore;
+        }
+        if (inning == 12) {
+            document.getElementById("hom6").innerHTML = inningScore;
+        }
+        if (inning == 14) {
+            document.getElementById("hom7").innerHTML = inningScore;
+        }
+        if (inning == 16) {
+            document.getElementById("hom8").innerHTML = inningScore;
+        }
+        if (inning == 18) {
+            document.getElementById("hom9").innerHTML = inningScore;
+        }
+    }
+}
+function endAtBat() {
     document.getElementById("result").style.display = 'none';
+}
+function endInning() {
+    if (inning == 2 || inning == 4 || inning == 6 || inning == 8 || inning == 10 
+        || inning == 12 || inning == 14 || inning == 16 || inning == 18) {
+            document.getElementById("topInning").style.display = 'block';
+            document.getElementById("bottom").style.display = 'none';
+    } else {
+            document.getElementById("bottom").style.display = 'block';
+            document.getElementById("topInning").style.display = 'none';
+    }
+    if (inning == 2 || inning == 4 || inning == 6 || inning == 8 || inning == 10 
+        || inning == 12 || inning == 14 || inning == 16 || inning == 18) {
+    totInning += 1;
+        }
+    document.getElementById("inningNum").innerHTML = totInning;
+    document.getElementById("onFirst").style.display = 'none';
+    document.getElementById("onSecond").style.display = 'none';
+    document.getElementById("onThird").style.display = 'none';
+    document.getElementById("balls").innerHTML = 0;
+    document.getElementById("strikes").innerHTML = 0;
+    document.getElementById("outs").innerHTML = 0;
+    inning+= 1;
+    inningScore = 0;
 }
