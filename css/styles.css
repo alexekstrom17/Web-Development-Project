@@ -39,11 +39,12 @@ title {
 div.atBat {
     margin-top:10px;
     border-style: solid;
-    width: 30%;
+    width: 35%;
 }
 
 button {
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 button#runnerFirst, button#runnerSecond, button#runnerThird, button#runScored{
@@ -187,7 +188,6 @@ td.scoreCell {
 .placeholderTop {
     height: 50px;
     width: 80px;
-    
     margin-left: 10px;
 }
 #bottom {
@@ -202,9 +202,21 @@ td.scoreCell {
 }
 
 .homeLineup {
-    height: 100px;
-    width: 100px;
+    height: 380px;
+    width: 200px;
     background-color: green;
+    float: right;
+    margin-top: -380px;
+    margin-right: 400px;
+}
+
+.visLineup {
+    height: 380px;
+    width: 200px;
+    background-color: blue;
+    float: right;
+    margin-top: -380px;
+    margin-right: 200px;
 }
 .lineups {
     float: left;
@@ -252,4 +264,17 @@ td.scoreCell {
     margin-top: -80px;
     margin-right: 120px; 
     display: none;
+}
+.recents {
+    margin-left: 40%;
+}
+#homeTeam {
+    display: none;
+}
+#visTeam {
+    display: none;
+}
+.PitchCell {
+    padding-right: 10px;
+    text-align: center;
 }

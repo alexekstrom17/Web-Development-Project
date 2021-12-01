@@ -13,7 +13,7 @@
     </header>
 
     <div class="recents">
-        Body of baseball scoring<br><br>
+        <span id="recent"></span><br><br>
     </div>
     <button type="button" id="editLineups" onclick="editLineups();">Edit Lineups</button><br>
     <div class="bases">
@@ -77,12 +77,12 @@
                     </tr>
                     <tr>
                         <th scope="col" class="rowTitle">
-                            Visitor
+                            <span id="visName"></span>
                         </th>
                     </tr>
                     <tr>
                         <th scope="col" class="rowTitle">
-                            Home
+                            <span id="homeName"></span>
                         </th>
                     </tr>
                 </tbody>
@@ -156,9 +156,11 @@
 </div>
 </div>
     <div class="atBat">
-        <h2>At Bat:</h2>
+        <h2>At Bat: <span id="currentHitter"></span></h2>
+        <div id="count">
         <button type="button" id="ballButton" onclick="ball();">Ball</button>
         <button type="button" id="strikeButton" onclick="strike();">Strike</button><br>
+        </div>
         <button type="button" id="inPlay" onclick="inPlay();">In Play</button><br>
         <div id="result">
             <button type="button" id="singleButton" onclick="single();">Single</button> 
@@ -174,78 +176,129 @@
             <button type="button" id="lineoutButton" onclick="lineout();">Lineout</button><br>
             <button type="button" id="errorButton" onclick="error();">Error</button><br>
 
-            <label for="position"> To:</label>
-            <select name="position" id="position">
-                <option value="position">Position</option>
-                <option value="rf">Right Field</option>
-                <option value="cf">Center Field</option>
-                <option value="lf">Left Field</option>
-                <option value="3b">Third Base</option>
-                <option value="ss">Short Stop</option>
-                <option value="2b">Second Base</option>
-                <option value="1b">First Base</option>
-                <option value="p">Pitcher</option>
-                <option value="c">Catcher</option>
-                <option value="rfl">Right Field Line</option>
-                <option value="rc">Right Center</option>
-                <option value="lc">Left Center</option>
-                <option value="lfl">Left Field Line</option>
-            </select>
-            <input type="submit" value="Submit" class="Submit"> <br>
             <button type="button" id="endAtBat" onclick="endAtBat();">End At Bat</button>
         </div>
-        <button type="button">Hit By Pitch</button><br>
+        <div id="prePitch">
+        <button type="button" id="hitByPitch" onclick="hitByPitch();">Hit By Pitch</button><br>
+        <button type="button" id="stoleSecond" onclick="stoleSecond();">Stole Second</button>
+        <button type="button" id="stoleThird" onclick="stoleThird();">Stole Third</button>
+        <button type="button" id="stoleHome" onclick="stoleHome();">Stole Home</button><br>
         <button type="button" id="runFirst" onclick="runFirst();">Runner To First</button>
         <button type="button" id="runSecond" onclick="runSecond();">Runner To Second</button>
         <button type="button" id="runThird" onclick="runThird();">Runner To Third</button>
         <button type="button" id="runnerScore" onclick="runScored();">Run Scored</button><br>
+        <button type="button" id="clearFirst" onclick="clearFirst();">Clear First</button>
+        <button type="button" id="clearSecond" onclick="clearSecond();">Clear Second</button>
+        <button type="button" id="clearThird" onclick="clearThird();">Clear Third</button><br>
         <button type="button" id="inningEnd" onclick="endInning();">End Inning</button><br><br>
+        </div>
     </div>
 
     <div class="homeLineup">
-        <ol class = "a">
-            <li><span id="home1"></span></li>
-        <span id="home2"></span>
-        <span id="home3"></span>
-        <span id="home4"></span>
-        <span id="home5"></span>
-        <span id="home6"></span>
-        <span id="home7"></span>
-        <span id="home8"></span>
-        <span id="home9"></span>
-        </ol>
+        <h2><span id="homeName1"></span></h2>
+        <p>1. <span id="home1" onclick="home1();"></span></p>
+        <p>2. <span id="home2" onclick="home2();"></span></p>
+        <p>3. <span id="home3" onclick="home3();"></span></p>
+        <p>4. <span id="home4" onclick="home4();"></span></p>
+        <p>5. <span id="home5" onclick="home5();"></span></p>
+        <p>6. <span id="home6" onclick="home6();"></span></p>
+        <p>7. <span id="home7" onclick="home7();"></span></p>
+        <p>8. <span id="home8" onclick="home8();"></span></p>
+        <p>9. <span id="home9" onclick="home9();"></span></p>
+        <p>Pitcher: <span id="home10"></span></p>
     </div>
     <div class="visLineup">
-        <span id="vis1"></span>
-        <span id="vis2"></span>
-        <span id="vis3"></span>
-        <span id="vis4"></span>
-        <span id="vis5"></span>
-        <span id="vis6"></span>
-        <span id="vis7"></span>
-        <span id="vis8"></span>
-        <span id="vis9"></span>
+        <h2><span id="visName1"></span></h2>
+        <p>1. <span id="1vis1" onclick="visitor1();"></span></p>
+        <p>2. <span id="2vis2" onclick="visitor2();"></span></p>
+        <p>3. <span id="3vis3" onclick="visitor3();"></span></p>
+        <p>4. <span id="4vis4" onclick="visitor4();"></span></p>
+        <p>5. <span id="5vis5" onclick="visitor5();"></span></p>
+        <p>6. <span id="6vis6" onclick="visitor6();"></span></p>
+        <p>7. <span id="7vis7" onclick="visitor7();"></span></p>
+        <p>8. <span id="8vis8" onclick="visitor8();"></span></p>
+        <p>9. <span id="9vis9" onclick="visitor9();"></span></p>
+        <p>Pitcher: <span id="10vis10"></span></p>
     </div>
     <div class="pitcherStats">
-        <h2>Pitcher Stats:</h2>
+        <h2>Pitcher Stats: <span id="currentPitcher"></span></h2>
         <table>
             <tbody>
                 <tr>
                     <th class="pitcher" scope="col">Pitch Count</th>
+                    <th class="pitcher" scope="col"></th>
                     <th class="pitcher" scope="col">Balls</th>
+                    <th class="pitcher" scope="col"></th>
                     <th class="pitcher" scope="col">Strikes</th>
+                    <th class="pitcher" scope="col"></th>
                     <th class="pitcher" scope="col">Strikeouts</th>
+                    <th class="pitcher" scope="col"></th>
                     <th class="pitcher" scope="col">Walks</th>
                 </tr>
                 <tr>
                     <td class="PitchCell" id="pitchCount">0</td>
+                    <td class="PitchCell"></td>
                     <td class="PitchCell" id="pitchBalls">0</td>
+                    <td class="PitchCell"></td>
                     <td class="PitchCell" id="pitchStrikes">0</td>
+                    <td class="PitchCell"></td>
                     <td class="PitchCell" id="strikeouts">0</td>
+                    <td class="PitchCell"></td>
                     <td class="PitchCell" id="walks">0</td>
                 </tr>
             </tbody>
         </table>
     </div>
-    
+    <div id="homeTeam">
+    <label for="team1" >Home Team's Name:</label>
+    <input type="text" id="team1" name="team1"><br>
+    <h2>Lineup:</h2>
+    <label for="team1" >1.</label>
+    <input type="text" id="1team1" name="team1"><br>
+    <label for="team1" >2.</label>
+    <input type="text" id="2team1" name="team1"><br>
+    <label for="team1" >3.</label>
+    <input type="text" id="3team1" name="team1"><br>
+    <label for="team1" >4.</label>
+    <input type="text" id="4team1" name="team1"><br>
+    <label for="team1" >5.</label>
+    <input type="text" id="5team1" name="team1"><br>
+    <label for="team1" >6.</label>
+    <input type="text" id="6team1" name="team1"><br>
+    <label for="team1" >7.</label>
+    <input type="text" id="7team1" name="team1"><br>
+    <label for="team1" >8.</label>
+    <input type="text" id="8team1" name="team1"><br>
+    <label for="team1" >9.</label>
+    <input type="text" id="9team1" name="team1"><br>
+    <label for="team1">Pitcher: </label><br>
+    <input type="text" id="10team1" name="team1"><br><br>
+    <input type="submit" value="Submit" onclick="homeLineup();"><br><br>
+    </div>
+    <div id="visTeam">
+    <label for="team1">Enter Away Team's Name:</label>
+    <input type="text" id="team2" name="team1"><br>
+    <h3>Lineup:</h3>
+    <label for="team2" >1.</label>
+    <input type="text" id="1team2" name="team2"><br>
+    <label for="team2" >2.</label>
+    <input type="text" id="2team2" name="team2"><br>
+    <label for="team2" >3.</label>
+    <input type="text" id="3team2" name="team2"><br>
+    <label for="team2" >4.</label>
+    <input type="text" id="4team2" name="team2"><br>
+    <label for="team2" >5.</label>
+    <input type="text" id="5team2" name="team2"><br>
+    <label for="team2" >6.</label>
+    <input type="text" id="6team2" name="team2"><br>
+    <label for="team2" >7.</label>
+    <input type="text" id="7team2" name="team2"><br>
+    <label for="team2" >8.</label>
+    <input type="text" id="8team2" name="team2"><br>
+    <label for="team2" >9.</label>
+    <input type="text" id="9team2" name="team2"><br>
+    <label for="team2">Pitcher: </label><br>
+    <input type="text" id="10team2" name="team2"><br><br>
+    <input type="submit" value="Submit" onclick="visLineup();"><br>
+    </div>
 </html>
