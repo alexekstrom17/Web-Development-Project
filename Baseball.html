@@ -163,19 +163,18 @@
         </div>
         <button type="button" id="inPlay" onclick="inPlay();">In Play</button><br>
         <div id="result">
-            <button type="button" id="singleButton" onclick="single();">Single</button> 
+            <button type="button" id="singleButton" onclick="single();">Single</button>
+            <button type="button" id="flyoutButton" onclick="flyout();">Fly Out</button>
             <button type="button" id="runnerFirst" onclick="runFirst();">Runner To First</button><br>
             <button type="button" id="doubleButton" onclick="double();">Double</button>
+            <button type="button" id="lineoutButton" onclick="lineout();">Lineout</button>
             <button type="button" id="runnerSecond" onclick="runSecond();">Runner To Second</button><br>
             <button type="button" id="tripleButton" onclick="triple();">Triple</button>
+            <button type="button" id="errorButton" onclick="error();">Error</button>
             <button type="button" id="runnerThird" onclick="runThird();">Runner To Third</button> <br>
             <button type="button" id="homeRunButton" onclick="homerun();">Home Run</button>
             <button type="button" id="runScored" onclick="runScored();">Run Scored</button><br>
             <button type="button" id="groundoutButton" onclick="groundout();">Groundout</button><br>
-            <button type="button" id="flyoutButton" onclick="flyout();">Fly Out</button><br>
-            <button type="button" id="lineoutButton" onclick="lineout();">Lineout</button><br>
-            <button type="button" id="errorButton" onclick="error();">Error</button><br>
-
             <button type="button" id="endAtBat" onclick="endAtBat();">End At Bat</button>
         </div>
         <div id="prePitch">
@@ -194,7 +193,7 @@
         </div>
     </div>
 
-    <div class="homeLineup">
+    <div id="homeLineup">
         <h2><span id="homeName1"></span></h2>
         <p>1. <span id="home1" onclick="home1();"></span></p>
         <p>2. <span id="home2" onclick="home2();"></span></p>
@@ -207,7 +206,7 @@
         <p>9. <span id="home9" onclick="home9();"></span></p>
         <p>Pitcher: <span id="home10"></span></p>
     </div>
-    <div class="visLineup">
+    <div id="visLineup">
         <h2><span id="visName1"></span></h2>
         <p>1. <span id="1vis1" onclick="visitor1();"></span></p>
         <p>2. <span id="2vis2" onclick="visitor2();"></span></p>
@@ -219,6 +218,61 @@
         <p>8. <span id="8vis8" onclick="visitor8();"></span></p>
         <p>9. <span id="9vis9" onclick="visitor9();"></span></p>
         <p>Pitcher: <span id="10vis10"></span></p>
+    </div>
+    <div class="hitterStats">
+        <h2><span id="hitter"></span></h2>
+        <table>
+            <tbody>
+                <tr>
+                    <th class="hitter" scope="col">At Bats</th>
+                    <th class="hitter" scope="col"> </th>
+                    <th class="hitter" scope="col">Hits</th>
+                    <th class="hitter" scope="col"></th>
+                    <th class="hitter" scope="col">Singles</th>
+                    <th class="hitter" scope="col"> </th>
+                    <th class="hitter" scope="col">Doubles</th>
+                    <th class="hitter" scope="col"> </th>
+                    <th class="hitter" scope="col">Triples</th>
+                    <th class="hitter" scope="col"> </th>
+                    <th class="hitter" scope="col">Home Runs</th>
+                </tr>
+                <tr>
+                    <td class="hitCell" id="atBats">0</td>
+                    <td class="hitCell"></td>
+                    <td class="hitCell" id="hits">0</td>
+                    <td class="hitCell"></td>
+                    <td class="hitCell" id="singles">0</td>
+                    <td class="hitCell"></td>
+                    <td class="hitCell" id="doubles">0</td>
+                    <td class="hitCell"></td>
+                    <td class="hitCell" id="triples">0</td>
+                    <td class="hitCell"></td>
+                    <td class="hitCell" id="homeRunsHit">0</td>
+                </tr>
+                <tr>
+                    <th class="hitter" scope="col">RBI's</th>
+                    <th class="hitter" scope="col"> </th>
+                    <th class="hitter" scope="col">Walks</th>
+                    <th class="hitter" scope="col"> </th>
+                    <th class="hitter" scope="col">HBP</th>
+                    <th class="hitter" scope="col"> </th>
+                    <th class="hitter" scope="col">Strikeouts</th>
+                    <th class="hitter" scope="col"></th>
+                    <th class="hitter" scope="col">Stolen Bases</th>
+                </tr>
+                <tr>
+                    <td class="hitCell" id="rbis">0</td>
+                    <td class="hitCell"></td>
+                    <td class="hitCell" id="hitterWalks">0</td>
+                    <td class="hitCell"></td>
+                    <td class="hitCell" id="hitterHitByPitch">0</td>
+                    <td class="hitCell"></td>
+                    <td class="hitCell" id="hitterStrikeouts">0</td>
+                    <td class="hitCell"></td>
+                    <td class="hitCell" id="stolenBases">0</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <div class="pitcherStats">
         <h2>Pitcher Stats: <span id="currentPitcher"></span></h2>
