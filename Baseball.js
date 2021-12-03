@@ -1801,7 +1801,7 @@ function stoleHome() {
         if (atBat == document.getElementById("9team2").value) {
             vis9SB += 1;
             document.getElementById("stolenBases").innerHTML = vis9SB;
-        }
+        } 
     } else {
         if (atBat == document.getElementById("1team1").value) {
             home1SB += 1;
