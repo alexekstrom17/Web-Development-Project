@@ -48,7 +48,6 @@ let home1SO = 0; let home2SO = 0; let home3SO = 0; let home4SO = 0; let home5SO 
 let vis1SB = 0; let vis2SB = 0; let vis3SB = 0; let vis4SB = 0; let vis5SB = 0; let vis6SB = 0; let vis7SB = 0; let vis8SB = 0; let vis9SB = 0;
 let home1SB = 0; let home2SB = 0; let home3SB = 0; let home4SB = 0; let home5SB = 0; let home6SB = 0; let home7SB = 0; let home8SB = 0; let home9SB = 0;
 
-//let v1 = [vis1AB,vis1Hits, vis1Singles, vis1Doubles, vis1Triples, vis1HR, vis1RBI, vis1Walks, vis1HBP, vis1SO, vis1SB];
 
 function Player(name, team, abs=0, hits=0, singles=0, doubles=0, triples=0, hr=0, rbi=0, walks=0, hbp=0, so=0, sb=0) {
     this.name = name;
