@@ -72,6 +72,16 @@ function Player(name, team, abs=0, hits=0, singles=0, doubles=0, triples=0, hr=0
         xhr.send(JSON.stringify(this));
     };
 }
+function sendUpdate(atBat, play){
+    document.getElementById("recent").innerHTML = atBat + " Singled";
+    let xhr = new XMLHttpRequest();
+    // xhr.addEventListener("load", responseReceivedHandler);    
+    xhr.responseType = "json";        
+    let queryString = "name=" + atBat + "&" + play + "=1"
+    xhr.open("PUT", "https://us-west-2.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/baseballstats-ovlbt/service/players/incoming_webhook/player-update?" + queryString);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(queryString);
+}
 
 
 function visLineup () {
@@ -875,13 +885,7 @@ function single() {
         }
     }
     document.getElementById("recent").innerHTML = atBat + " Singled";
-    let xhr = new XMLHttpRequest();
-    // xhr.addEventListener("load", responseReceivedHandler);    
-    xhr.responseType = "json";        
-    let queryString = "name=" + atBat
-    xhr.open("PUT", "https://us-west-2.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/baseballstats-ovlbt/service/players/incoming_webhook/player-update?" + queryString);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send(queryString);
+    sendUpdate(atBat, "singles")
 }
 function double() {
     if (inning == 1 || inning == 3 || inning == 5 || inning == 7 || inning == 9 
@@ -1037,6 +1041,7 @@ function double() {
         }
     }
     document.getElementById("recent").innerHTML = atBat + " Doubled";
+    sendUpdate(atBat, "doubles")
 }
 function triple() {
     if (inning == 1 || inning == 3 || inning == 5 || inning == 7 || inning == 9 
@@ -1192,6 +1197,7 @@ function triple() {
         }
     }
     document.getElementById("recent").innerHTML = atBat + " Tripled";
+    sendUpdate(atBat, "triples")
 }
 function homerun() {
     if (inning == 1 || inning == 3 || inning == 5 || inning == 7 || inning == 9 
@@ -1347,6 +1353,7 @@ function homerun() {
         }
     }
     document.getElementById("recent").innerHTML = atBat + " Hit A Home Run"
+    sendUpdate(atBat, "hr")
 }
 
 function groundout() {
@@ -1690,6 +1697,8 @@ function hitByPitch() {
             document.getElementById("hitterHitByPitch").innerHTML = home9HBP;
         }
     }
+    sendUpdate(atBat, "hbp")
+    
 }
 function stoleSecond() {
     document.getElementById("recent").innerHTML = atBat + " Stole Second";
@@ -1769,6 +1778,7 @@ function stoleSecond() {
             document.getElementById("stolenBases").innerHTML = home9SB;
         }
     }   
+    sendUpdate(atBat, "sb")
 }
 function stoleThird() {
     document.getElementById("recent").innerHTML = atBat + " Stole Third";
@@ -1848,6 +1858,7 @@ function stoleThird() {
             document.getElementById("stolenBases").innerHTML = home9SB;
         }
     }
+    sendUpdate(atBat, "sb")
 }
 function stoleHome() {
     document.getElementById("recent").innerHTML = atBat + " Stole Home";
@@ -1927,6 +1938,7 @@ function stoleHome() {
             document.getElementById("stolenBases").innerHTML = home9SB;
         }
     }
+    sendUpdate(atBat, "sb")
 }
 function runFirst() {
     if (document.getElementById("runnerFirst")) {
@@ -2098,24 +2110,13 @@ function clearThird() {
 }
 function endAtBat() {
       
-    let xhr = new XMLHttpRequest();
-    // xhr.addEventListener("load", responseReceivedHandler);    
-    xhr.responseType = "json";        
-    let queryString = "name=" + atBat;
-    xhr.open("POST", "https://us-west-2.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/baseballstats-ovlbt/service/players/incoming_webhook/player-findbyname?" + queryString);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send(queryString);
     document.getElementById("result").style.display = 'none';
     document.getElementById("count").style.display = 'block';
     document.getElementById("prePitch").style.display = 'block';
 
+    sendUpdate(atBat, "atbat")
+
 }
-function responseReceivedHandler() {
-    if (this.status === 200) {
-       let matched_player = this.response;
-       updateStats(matched_player)
-    } 
- }
  
 function endInning() {
     if (inning == 2 || inning == 4 || inning == 6 || inning == 8 || inning == 10 
