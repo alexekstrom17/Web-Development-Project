@@ -21,6 +21,10 @@ let inning = 1;
 let totInning = 1;
 let inningScore = 0;
 let atBat = "";
+let home_lineup = [];
+let visitor_lineup = [];
+let home_team = [];
+let visitor_team = [];
 let vis1AB = 0; let vis2AB = 0; let vis3AB = 0; let vis4AB = 0; let vis5AB = 0; let vis6AB = 0; let vis7AB = 0; let vis8AB = 0; let vis9AB = 0;
 let home1AB = 0; let home2AB = 0; let home3AB = 0; let home4AB = 0; let home5AB = 0; let home6AB = 0; let home7AB = 0; let home8AB = 0; let home9AB = 0;
 let vis1Hits = 0; let vis2Hits = 0; let vis3Hits = 0; let vis4Hits = 0; let vis5Hits = 0; let vis6Hits = 0; let vis7Hits = 0; let vis8Hits = 0; let vis9Hits = 0;
@@ -44,35 +48,121 @@ let home1SO = 0; let home2SO = 0; let home3SO = 0; let home4SO = 0; let home5SO 
 let vis1SB = 0; let vis2SB = 0; let vis3SB = 0; let vis4SB = 0; let vis5SB = 0; let vis6SB = 0; let vis7SB = 0; let vis8SB = 0; let vis9SB = 0;
 let home1SB = 0; let home2SB = 0; let home3SB = 0; let home4SB = 0; let home5SB = 0; let home6SB = 0; let home7SB = 0; let home8SB = 0; let home9SB = 0;
 
+
+function Player(name, team, abs=0, hits=0, singles=0, doubles=0, triples=0, hr=0, rbi=0, walks=0, hbp=0, so=0, sb=0) {
+    this.name = name;
+    this.abs = abs;
+    this.hits = hits;
+    this.singles = singles;
+    this.doubles = doubles;
+    this.triples = triples;
+    this.hr = hr;
+    this.rbi = rbi;
+    this.walks = walks;
+    this.hbp = hbp;
+    this.so = so;
+    this.sb = sb;
+    this.team = team;
+    this._id = Math.floor(Math.random() * 100000000000000);
+    this.createPlayer = function() {
+        let xhr = new XMLHttpRequest();
+        xhr.responseType = "json";        
+        xhr.open("POST", "https://us-west-2.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/baseballstats-ovlbt/service/players/incoming_webhook/player-new-object?");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(JSON.stringify(this));
+    };
+}
+function sendUpdate(atBat, play){
+    document.getElementById("recent").innerHTML = atBat + " Singled";
+    let xhr = new XMLHttpRequest();
+    // xhr.addEventListener("load", responseReceivedHandler);    
+    xhr.responseType = "json";        
+    let queryString = "name=" + atBat + "&" + play + "=1"
+    xhr.open("PUT", "https://us-west-2.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/baseballstats-ovlbt/service/players/incoming_webhook/player-update?" + queryString);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(queryString);
+}
+
+
 function visLineup () {
+    
     document.getElementById("visName").innerHTML = document.getElementById("team2").value;
     document.getElementById("visName1").innerHTML = document.getElementById("team2").value;
     document.getElementById("1vis1").innerHTML = document.getElementById("1team2").value;
+    let vis1 = document.getElementById("1team2").value;
     document.getElementById("2vis2").innerHTML = document.getElementById("2team2").value;
+    let vis2 = document.getElementById("2team2").value;
     document.getElementById("3vis3").innerHTML = document.getElementById("3team2").value;
+    let vis3 = document.getElementById("3team2").value;
     document.getElementById("4vis4").innerHTML = document.getElementById("4team2").value;
+    let vis4 = document.getElementById("4team2").value;
     document.getElementById("5vis5").innerHTML = document.getElementById("5team2").value;
+    let vis5 = document.getElementById("5team2").value;
     document.getElementById("6vis6").innerHTML = document.getElementById("6team2").value;
+    let vis6 = document.getElementById("6team2").value;
     document.getElementById("7vis7").innerHTML = document.getElementById("7team2").value;
+    let vis7 = document.getElementById("7team2").value;
     document.getElementById("8vis8").innerHTML = document.getElementById("8team2").value;
+    let vis8 = document.getElementById("8team2").value;
     document.getElementById("9vis9").innerHTML = document.getElementById("9team2").value;
+    let vis9 = document.getElementById("9team2").value;
     document.getElementById("10vis10").innerHTML = document.getElementById("10team2").value;
+    let vis10 = document.getElementById("10team2").value;
     document.getElementById("visTeam").style.display = 'none';
+    visitor_lineup = [vis1,vis2,vis3,vis4,vis5,vis6,vis7,vis8,vis9,vis10];
+
+   
+    for (var i = 0; i < visitor_lineup.length; i++) {
+        if(visitor_lineup[i] != ""){
+            let player = new Player(visitor_lineup[i], document.getElementById("team2").value)
+            player.createPlayer();
+            visitor_team.push([player, (i+1)]);
+            // ----create document in db with name only-----
+            // let xhr = new XMLHttpRequest();
+            // xhr.responseType = "json";        
+            // let queryString = "name=" + visitor_lineup[i];
+            // xhr.open("POST", "https://us-west-2.aws.webhooks.mongodb-realm.com/api/client/v2.0/app/baseballstats-ovlbt/service/players/incoming_webhook/player-new?" + queryString);
+            // xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            // xhr.send(queryString);
+                    
+        }
+      }
+   
 }
 function homeLineup() {
     document.getElementById("homeName").innerHTML = document.getElementById("team1").value;
     document.getElementById("homeName1").innerHTML = document.getElementById("team1").value;
     document.getElementById("home1").innerHTML = document.getElementById("1team1").value;
+    let hom1 = document.getElementById("1team1").value;
     document.getElementById("home2").innerHTML = document.getElementById("2team1").value;
+    let hom2 = document.getElementById("2team1").value;
     document.getElementById("home3").innerHTML = document.getElementById("3team1").value;
+    let hom3 = document.getElementById("3team1").value;
     document.getElementById("home4").innerHTML = document.getElementById("4team1").value;
+    let hom4 = document.getElementById("4team1").value;
     document.getElementById("home5").innerHTML = document.getElementById("5team1").value;
+    let hom5 = document.getElementById("5team1").value;
     document.getElementById("home6").innerHTML = document.getElementById("6team1").value;
+    let hom6 = document.getElementById("6team1").value;
     document.getElementById("home7").innerHTML = document.getElementById("7team1").value;
+    let hom7 = document.getElementById("7team1").value;
     document.getElementById("home8").innerHTML = document.getElementById("8team1").value;
+    let hom8 = document.getElementById("8team1").value;
     document.getElementById("home9").innerHTML = document.getElementById("9team1").value;
+    let hom9 = document.getElementById("9team1").value;
     document.getElementById("home10").innerHTML = document.getElementById("10team1").value;
+    let hom10 = document.getElementById("10team1").value;
     document.getElementById("homeTeam").style.display = 'none';
+    home_lineup = [hom1,hom2,hom3,hom4,hom5,hom6,hom7,hom8,hom9,hom10];
+   
+    for (var i = 0; i < home_lineup.length; i++) {
+        if(home_lineup[i] != ""){
+            let player = new Player(home_lineup[i], document.getElementById("team1").value)
+            player.createPlayer();   
+            home_team.push(player);
+        }
+      }
+
 }
 function home1() {
     atBat = document.getElementById("1team1").value;
@@ -795,6 +885,7 @@ function single() {
         }
     }
     document.getElementById("recent").innerHTML = atBat + " Singled";
+    sendUpdate(atBat, "singles")
 }
 function double() {
     if (inning == 1 || inning == 3 || inning == 5 || inning == 7 || inning == 9 
@@ -950,6 +1041,7 @@ function double() {
         }
     }
     document.getElementById("recent").innerHTML = atBat + " Doubled";
+    sendUpdate(atBat, "doubles")
 }
 function triple() {
     if (inning == 1 || inning == 3 || inning == 5 || inning == 7 || inning == 9 
@@ -1105,6 +1197,7 @@ function triple() {
         }
     }
     document.getElementById("recent").innerHTML = atBat + " Tripled";
+    sendUpdate(atBat, "triples")
 }
 function homerun() {
     if (inning == 1 || inning == 3 || inning == 5 || inning == 7 || inning == 9 
@@ -1260,6 +1353,7 @@ function homerun() {
         }
     }
     document.getElementById("recent").innerHTML = atBat + " Hit A Home Run"
+    sendUpdate(atBat, "hr")
 }
 
 function groundout() {
@@ -1603,6 +1697,8 @@ function hitByPitch() {
             document.getElementById("hitterHitByPitch").innerHTML = home9HBP;
         }
     }
+    sendUpdate(atBat, "hbp")
+    
 }
 function stoleSecond() {
     document.getElementById("recent").innerHTML = atBat + " Stole Second";
@@ -1682,6 +1778,7 @@ function stoleSecond() {
             document.getElementById("stolenBases").innerHTML = home9SB;
         }
     }   
+    sendUpdate(atBat, "sb")
 }
 function stoleThird() {
     document.getElementById("recent").innerHTML = atBat + " Stole Third";
@@ -1761,6 +1858,7 @@ function stoleThird() {
             document.getElementById("stolenBases").innerHTML = home9SB;
         }
     }
+    sendUpdate(atBat, "sb")
 }
 function stoleHome() {
     document.getElementById("recent").innerHTML = atBat + " Stole Home";
@@ -1840,6 +1938,7 @@ function stoleHome() {
             document.getElementById("stolenBases").innerHTML = home9SB;
         }
     }
+    sendUpdate(atBat, "sb")
 }
 function runFirst() {
     if (document.getElementById("runnerFirst")) {
@@ -2010,10 +2109,15 @@ function clearThird() {
     document.getElementById("onThird").style.display = 'none';
 }
 function endAtBat() {
+      
     document.getElementById("result").style.display = 'none';
     document.getElementById("count").style.display = 'block';
     document.getElementById("prePitch").style.display = 'block';
+
+    sendUpdate(atBat, "atbat")
+
 }
+ 
 function endInning() {
     if (inning == 2 || inning == 4 || inning == 6 || inning == 8 || inning == 10 
         || inning == 12 || inning == 14 || inning == 16 || inning == 18) {
